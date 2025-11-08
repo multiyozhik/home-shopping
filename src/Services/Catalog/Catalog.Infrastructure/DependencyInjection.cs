@@ -6,6 +6,11 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("PgConnection")!;
+        services.AddMarten(options => options
+            .Connection(connectionString))
+            .UseLightweightSessions()
+            .InitializeWith<InitializeDatabaseAsync>();
         return services;
     }
 }
