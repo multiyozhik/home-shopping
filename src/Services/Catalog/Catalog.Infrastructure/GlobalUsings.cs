@@ -4,3 +4,5 @@ global using Catalog.Domain.Entities;
 global using Marten;
 global using Marten.Schema;
 global using Catalog.Infrastructure.Data.Seed;
+global using Catalog.Domain.Repositories;
+global using JasperFx.Core;

@@ -10,7 +10,8 @@ public static class DependencyInjection
         services.AddMarten(options => options
             .Connection(connectionString))
             .UseLightweightSessions()
-            .InitializeWith<InitializeDatabaseAsync>();
+            .InitializeWith<InitializeDatabaseAsync>();      
+
         return services;
     }
 }
