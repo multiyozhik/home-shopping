@@ -19,8 +19,7 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
 
     public async Task<IEnumerable<CatalogItem>> GetCatalogItemsByBrandAsync(string brandTitle, CancellationToken token)
     {
-        if (brandTitle is null)
-            throw new Exception("Название бренда не определено");
+        // TODO: if (brandTitle is null) throw new Exception("Название бренда не определено");
 
         return await session.Query<CatalogItem>().Where(
             item => item.Brand != null 
@@ -31,8 +30,7 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
 
     public async Task<IEnumerable<CatalogItem>> GetCatalogItemsByTitleAsync(string title, CancellationToken token)
     {
-        if (title is null)
-            throw new Exception("Название элемента каталога не определено");
+        // TODO: if (title is null) throw new Exception("Название элемента каталога не определено");
 
         return await session.Query<CatalogItem>().Where(
             item => item.Title != null 
@@ -65,6 +63,6 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
         session.Delete<CatalogItem>(id);
         await session.SaveChangesAsync(token);
         return true;
-        //return session.Query<CatalogItem>().Where(item => item.IsDeleted()).Any();
+        // TODO: return session.Query<CatalogItem>().Where(item => item.IsDeleted()).Any();
     }
 }
