@@ -7,3 +7,5 @@ global using MediatR;
 global using Catalog.Domain.Entities;
 global using Catalog.Application.Queries.CategoryQueries;
 global using Catalog.Application.Responses.CategoryResponses;
+global using Catalog.Application.Responses.CatalogItemResponses;
+global using Catalog.Application.Queries.CatalogItemQueries;

@@ -12,3 +12,5 @@ global using System.Net;
 global using Microsoft.OpenApi.Models;
 global using Catalog.Application.Queries.CategoryQueries;
 global using Catalog.Application.Responses.CategoryResponses;
+global using Catalog.Application.Queries.CatalogItemQueries;
+global using Catalog.Application.Responses.CatalogItemResponses;
