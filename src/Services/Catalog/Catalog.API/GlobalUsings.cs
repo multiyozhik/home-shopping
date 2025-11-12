@@ -10,3 +10,5 @@ global using Microsoft.AspNetCore.Mvc;
 global using Asp.Versioning;
 global using System.Net;
 global using Microsoft.OpenApi.Models;
+global using Catalog.Application.Queries.CategoryQueries;
+global using Catalog.Application.Responses.CategoryResponses;

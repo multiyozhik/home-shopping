@@ -5,3 +5,5 @@ global using Catalog.Application.Responses.BrandResponses;
 global using Catalog.Domain.Repositories;
 global using MediatR;
 global using Catalog.Domain.Entities;
+global using Catalog.Application.Queries.CategoryQueries;
+global using Catalog.Application.Responses.CategoryResponses;
