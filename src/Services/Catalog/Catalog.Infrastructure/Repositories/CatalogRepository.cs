@@ -24,7 +24,7 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
         return await session.Query<CatalogItem>().Where(
             item => item.Brand != null 
             && !string.IsNullOrEmpty(item.Brand.Title)
-            && item.Brand.Title.ContainsIgnoreCase(brandTitle))
+            && item.Brand.Title.Contains(brandTitle, StringComparison.OrdinalIgnoreCase))
             .ToListAsync(token);
     }
 
@@ -35,8 +35,8 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
         return await session.Query<CatalogItem>().Where(
             item => item.Title != null 
             && !string.IsNullOrEmpty(title)
-            && item.Title.ContainsIgnoreCase(title))
-            .ToListAsync(token);    
+            && item.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
+            .ToListAsync(token);
     }
 
     public async Task<CatalogItem?> GetCatalogItemAsync(Guid id, CancellationToken token)

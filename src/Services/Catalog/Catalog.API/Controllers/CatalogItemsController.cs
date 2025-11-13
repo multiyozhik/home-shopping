@@ -1,10 +1,10 @@
 namespace Catalog.API.Controllers;
 
-public class CatalogItemController(IMediator mediator) : ApiController
+public class CatalogItemsController(IMediator mediator) : ApiController
 {
     [HttpGet]
     [ProducesResponseType(typeof(GetCatalogItemsResult), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<GetCatalogItemsResult>> GetCategoryItems()
+    public async Task<ActionResult<GetCatalogItemsResult>> GetCatalogItems()
     {
         var result = await mediator.Send(new GetCatalogItemsQuery());
         return Ok(result);
@@ -15,6 +15,14 @@ public class CatalogItemController(IMediator mediator) : ApiController
     public async Task<ActionResult<GetCatalogItemByIdResult>> GetCatalogItemById(Guid id)
     {
         var result = await mediator.Send(new GetCatalogItemByIdQuery(id));
+        return Ok(result);
+    }
+
+    [HttpGet("title/{catalogItemTitle}")]
+    [ProducesResponseType(typeof(GetCatalogItemsByTitleResult), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<GetCatalogItemsByTitleResult>> GetByTitle(string catalogItemTitle)
+    {
+        var result = await mediator.Send(new GetCatalogItemsByTitleQuery(catalogItemTitle));
         return Ok(result);
     }
 }
