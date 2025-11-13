@@ -14,3 +14,8 @@ global using Catalog.Application.Queries.CategoryQueries;
 global using Catalog.Application.Responses.CategoryResponses;
 global using Catalog.Application.Queries.CatalogItemQueries;
 global using Catalog.Application.Responses.CatalogItemResponses;
+global using Catalog.Domain.Entities;
+global using Catalog.API.DTOs.CatalogItemDTOs;
+global using Catalog.Application.Commands.CatalogItemCommands;
+global using Catalog.Application.Models.CatalogItemModels;
+global using Mapster;

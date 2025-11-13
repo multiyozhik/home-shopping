@@ -33,4 +33,14 @@ public class CatalogItemsController(IMediator mediator) : ApiController
         var result = await mediator.Send(new GetCatalogItemsByBrandTitleQuery(brandTitle));
         return Ok(result);
     }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(CreateCatalogItemResult), (int)HttpStatusCode.Created)]
+    public async Task<ActionResult<CreateCatalogItemResult>> CreateCatalogItem(
+        [FromBody]CreateCatalogItemDto createCatalogItemDto)
+    {
+        var createCatalogItemModel = createCatalogItemDto.Adapt<CreateCatalogItemModel>();
+        var result = await mediator.Send(new CreateCatalogItemCommand(createCatalogItemModel));
+        return CreatedAtAction(nameof(CreateCatalogItem), new {id = result.Id}, result);
+    }
 }
