@@ -37,10 +37,20 @@ public class CatalogItemsController(IMediator mediator) : ApiController
     [HttpPost]
     [ProducesResponseType(typeof(CreateCatalogItemResult), (int)HttpStatusCode.Created)]
     public async Task<ActionResult<CreateCatalogItemResult>> CreateCatalogItem(
-        [FromBody]CreateCatalogItemDto createCatalogItemDto)
+        [FromBody] CreateCatalogItemDto createCatalogItemDto)
     {
         var createCatalogItemModel = createCatalogItemDto.Adapt<CreateCatalogItemModel>();
         var result = await mediator.Send(new CreateCatalogItemCommand(createCatalogItemModel));
         return CreatedAtAction(nameof(CreateCatalogItem), new {id = result.Id}, result);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(typeof(UpdateCatalogItemResult), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<UpdateCatalogItemResult>> UpdateCatalogItem(
+        [FromBody] UpdateCatalogItemDto updateCatalogItemDto)
+    {
+        var updateCatalogItemModel = updateCatalogItemDto.Adapt<UpdateCatalogItemModel>();
+        var result = await mediator.Send(new UpdateCatalogItemCommand(updateCatalogItemModel));
+        return Ok(result);
     }
 }
