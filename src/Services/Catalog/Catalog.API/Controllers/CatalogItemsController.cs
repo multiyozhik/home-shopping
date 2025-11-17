@@ -1,12 +1,12 @@
 namespace Catalog.API.Controllers;
 
-public class CatalogItemsController(IMediator mediator) : ApiController
+public class CatalogItemsController : ApiController
 {
     [HttpGet]
     [ProducesResponseType(typeof(GetCatalogItemsResult), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<GetCatalogItemsResult>> GetCatalogItems()
     {
-        var result = await mediator.Send(new GetCatalogItemsQuery());
+        var result = await Mediator.Send(new GetCatalogItemsQuery());
         return Ok(result);
     }
 
@@ -14,7 +14,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
     [ProducesResponseType(typeof(GetCatalogItemByIdResult), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<GetCatalogItemByIdResult>> GetCatalogItemById(Guid id)
     {
-        var result = await mediator.Send(new GetCatalogItemByIdQuery(id));
+        var result = await Mediator.Send(new GetCatalogItemByIdQuery(id));
         return Ok(result);
     }
 
@@ -22,7 +22,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
     [ProducesResponseType(typeof(GetCatalogItemsByTitleResult), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<GetCatalogItemsByTitleResult>> GetByTitle(string catalogItemTitle)
     {
-        var result = await mediator.Send(new GetCatalogItemsByTitleQuery(catalogItemTitle));
+        var result = await Mediator.Send(new GetCatalogItemsByTitleQuery(catalogItemTitle));
         return Ok(result);
     }
 
@@ -30,7 +30,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
     [ProducesResponseType(typeof(GetCatalogItemsByBrandTitleResult), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<GetCatalogItemsByBrandTitleResult>> GetByBrandTitle(string brandTitle)
     {
-        var result = await mediator.Send(new GetCatalogItemsByBrandTitleQuery(brandTitle));
+        var result = await Mediator.Send(new GetCatalogItemsByBrandTitleQuery(brandTitle));
         return Ok(result);
     }
 
@@ -40,7 +40,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
         [FromBody] CreateCatalogItemDto createCatalogItemDto)
     {
         var createCatalogItemModel = createCatalogItemDto.Adapt<CreateCatalogItemModel>();
-        var result = await mediator.Send(new CreateCatalogItemCommand(createCatalogItemModel));
+        var result = await Mediator.Send(new CreateCatalogItemCommand(createCatalogItemModel));
         return CreatedAtAction(nameof(CreateCatalogItem), new {id = result.Id}, result);
     }
 
@@ -50,7 +50,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
         [FromBody] UpdateCatalogItemDto updateCatalogItemDto)
     {
         var updateCatalogItemModel = updateCatalogItemDto.Adapt<UpdateCatalogItemModel>();
-        var result = await mediator.Send(new UpdateCatalogItemCommand(updateCatalogItemModel));
+        var result = await Mediator.Send(new UpdateCatalogItemCommand(updateCatalogItemModel));
         return Ok(result);
     }
 
@@ -58,7 +58,7 @@ public class CatalogItemsController(IMediator mediator) : ApiController
     [ProducesResponseType(typeof(DeleteCatalogItemByIdResult), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<DeleteCatalogItemByIdResult>> DeleteCatalogItemById(Guid id)
     {
-        var result = await mediator.Send(new DeleteCatalogItemByIdCommand(id));
+        var result = await Mediator.Send(new DeleteCatalogItemByIdCommand(id));
         return Ok(result);
     }
 }
