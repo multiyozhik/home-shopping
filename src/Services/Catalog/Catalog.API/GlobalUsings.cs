@@ -20,3 +20,4 @@ global using Catalog.Application.Models.CatalogItemModels;
 global using Mapster;
 global using Swashbuckle.AspNetCore.Annotations;
 global using Microsoft.OpenApi;
+global using Catalog.Domain.Specifications;
