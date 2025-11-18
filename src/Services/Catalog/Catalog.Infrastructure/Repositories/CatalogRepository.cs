@@ -12,6 +12,53 @@ public class CatalogRepository(IDocumentSession session) : IBrandRepository, ICa
         return await session.Query<Category>().ToListAsync(token);
     }
 
+    public async Task<Pagination<CatalogItem>> GetCatalogItemsAsync(QueryArgs args, CancellationToken token)
+    {
+        var allCatalogItems = session.Query<CatalogItem>().AsQueryable();
+        var brandId = args.BrandId; 
+        if(brandId != null)
+        {
+            allCatalogItems = allCatalogItems.Where(
+                item => item.Brand != null && item.Brand.Id == brandId);
+        }
+
+        var categoryId = args.CategoryId;
+        if (categoryId != null)
+        {
+            allCatalogItems = allCatalogItems.Where(
+                item => item.Category != null && item.Category.Id == categoryId);
+        }
+
+        var search = args.Search;
+        if(!string.IsNullOrEmpty(search))
+        {
+            allCatalogItems = allCatalogItems.Where(
+                item => item.Title != null && item.Title.Contains(search, StringComparison.OrdinalIgnoreCase));
+        }
+
+        var sort = args.Sort;
+        if(!string.IsNullOrEmpty(sort))
+        {
+            allCatalogItems = sort.ToLower() switch
+            {
+                "price_desc" => allCatalogItems.OrderByDescending(item => item.Price),
+                "price_asc" => allCatalogItems.OrderBy(item => item.Price),
+                "title_desc" => allCatalogItems.OrderByDescending(item => item.Title),
+                "title_asc" => allCatalogItems.OrderBy(item => item.Title),
+                _ => allCatalogItems
+            };
+        }
+
+        var totalCount = allCatalogItems.Count();
+        var allItems = await allCatalogItems
+            .Skip((args.PageIndex - 1) * args.PageSize)
+            .Take(args.PageSize)
+            .ToListAsync(token);
+
+        return new Pagination<CatalogItem>(
+            args.PageIndex, args.PageSize, totalCount, allItems);
+    }
+
     public async Task<IEnumerable<CatalogItem>> GetAllCatalogItemsAsync(CancellationToken token)
     {
         return await session.Query<CatalogItem>().ToListAsync(token);

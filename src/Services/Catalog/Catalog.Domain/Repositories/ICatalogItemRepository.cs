@@ -2,6 +2,7 @@ namespace Catalog.Domain.Repositories;
 
 public interface ICatalogItemRepository
 {
+    Task<Pagination<CatalogItem>> GetCatalogItemsAsync(QueryArgs args, CancellationToken token);
     Task<IEnumerable<CatalogItem>> GetAllCatalogItemsAsync(CancellationToken token);
     Task<IEnumerable<CatalogItem>> GetCatalogItemsByBrandAsync(string brandTitle, CancellationToken token);
     Task<IEnumerable<CatalogItem>> GetCatalogItemsByTitleAsync(string title, CancellationToken token);
