@@ -31,6 +31,9 @@ public static class DependencyInjection
                 Version = "v2"
             });
             config.EnableAnnotations();
+
+            var path = AppContext.BaseDirectory;
+            config.IncludeXmlComments(Path.Combine(path, "Catalog.Domain.xml"));
         });
 
         var assembly = typeof(GetBrandsQuery).Assembly;
