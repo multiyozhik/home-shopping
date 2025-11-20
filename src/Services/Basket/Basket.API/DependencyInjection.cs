@@ -1,5 +1,4 @@
-using Carter;
-using Marten;
+using Basket.API.Infrastructure;
 
 namespace Basket.API;
 
@@ -23,8 +22,13 @@ public static class DependencyInjection
         });
 
         var connectionString = config.GetConnectionString("PgConnection")!;
-        services.AddMarten(options => options.Connection(connectionString))
-            .UseLightweightSessions();
+        services.AddMarten(options => 
+        {
+            options.Connection(connectionString);
+            options.Schema.For<ShoppingCart>().Identity(c => c.AccountName);
+        }).UseLightweightSessions();
+
+        services.AddScoped<ICartRepository, CartRepository>();
 
         return services;
     }
