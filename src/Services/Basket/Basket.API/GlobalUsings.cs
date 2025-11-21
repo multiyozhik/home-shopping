@@ -4,3 +4,5 @@ global using Carter;
 global using Marten;
 global using Basket.API.Infrastructure;
 global using Common.Kernel.CQRS.Commands;
+global using MediatR;
+global using Mapster;
