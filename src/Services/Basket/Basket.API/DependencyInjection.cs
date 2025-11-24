@@ -1,3 +1,5 @@
+using Common.Kernel.Exceptions.Handler;
+
 namespace Basket.API;
 
 public static class DependencyInjection
@@ -6,6 +8,7 @@ public static class DependencyInjection
         this IServiceCollection services, 
         IConfiguration config)
     {
+        services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
@@ -35,6 +38,7 @@ public static class DependencyInjection
         this WebApplication app
         )
     {
+        app.UseExceptionHandler(options => {});
         app.MapCarter();
 
         app.UseSwagger();
