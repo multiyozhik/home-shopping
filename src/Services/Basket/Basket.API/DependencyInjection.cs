@@ -1,5 +1,3 @@
-using Basket.API.Infrastructure;
-
 namespace Basket.API;
 
 public static class DependencyInjection
@@ -35,7 +33,7 @@ public static class DependencyInjection
 
     public static WebApplication UseApiServices(
         this WebApplication app
-    )
+        )
     {
         app.MapCarter();
 

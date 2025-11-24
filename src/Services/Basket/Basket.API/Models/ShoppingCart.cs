@@ -7,7 +7,7 @@ public class ShoppingCart
     public string AccountName { get; set; } = default!;
 
     /// <summary> Набор элементов в корзине </summary>
-    public List<ShoppingCartItem> Items = new();
+    public List<ShoppingCartItem> Items { get; set; } = new();
 
     /// <summary> Общая стоимость корзины </summary>
     public decimal TotalPrice => Items.Sum(i => i.Quantity * i.UnitPrice);
@@ -21,5 +21,5 @@ public class ShoppingCart
     }
 
     /// <summary> Конструктор (по умолчанию) </summary>
-    public ShoppingCart() {}
+    public ShoppingCart() { }
 }
