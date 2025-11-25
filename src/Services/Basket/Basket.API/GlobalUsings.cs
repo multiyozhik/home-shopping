@@ -7,3 +7,4 @@ global using Common.Kernel.CQRS.Commands;
 global using MediatR;
 global using Mapster;
 global using Common.Kernel.CQRS.Queries;
+global using Common.Kernel.Exceptions;

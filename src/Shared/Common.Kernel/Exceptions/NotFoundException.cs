@@ -1,6 +1,6 @@
 namespace Common.Kernel.Exceptions;
 
-/// <summary> Исключение NotFoundException </summary>
+/// <summary> Исключение NotFoundException - ресурс не найден </summary>
 public class NotFoundException: Exception
 {
     public string Value { get; } = default!;
