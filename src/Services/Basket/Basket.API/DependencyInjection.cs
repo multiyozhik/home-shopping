@@ -1,3 +1,4 @@
+using Common.Kernel.Behaviors;
 using Common.Kernel.Exceptions.Handler;
 
 namespace Basket.API;
@@ -20,7 +21,10 @@ public static class DependencyInjection
         {
             config.LicenseKey = licenseKey;
             config.RegisterServicesFromAssembly(assembly);
+            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
+
+        services.AddValidatorsFromAssembly(assembly);
 
         var connectionString = config.GetConnectionString("PgConnection")!;
         services.AddMarten(options => 
