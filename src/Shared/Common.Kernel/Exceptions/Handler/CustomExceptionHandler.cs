@@ -12,13 +12,26 @@ public class CustomExceptionHandler : IExceptionHandler
         Exception exception, 
         CancellationToken token)
     {
-        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        var (title, detail, statusCode) = exception switch
+        {
+            NotFoundException notFoundException => (
+                "Ресурс не найден",
+                notFoundException.Message,
+                StatusCodes.Status404NotFound
+            ),
+            _ => (
+                "Внутренняя ошибка сервера", 
+                "Произошла непредвиденная ошибка", 
+                StatusCodes.Status500InternalServerError)
+        };
+        
+        httpContext.Response.StatusCode = statusCode;
 
         var problemsDetails = new ProblemDetails()
         {
-            Title = "",
-            Detail = "",
-            Status = StatusCodes.Status500InternalServerError,
+            Title = title,
+            Detail = detail,
+            Status = statusCode,
             Instance = httpContext.Request.Path 
         };
 
