@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Common.Kernel.Exceptions.Handler;
 
 /// <summary> Глобальный обработчик исключений </summary>
@@ -18,6 +14,11 @@ public class CustomExceptionHandler : IExceptionHandler
                 "Ресурс не найден",
                 notFoundException.Message,
                 StatusCodes.Status404NotFound
+            ),
+            ValidationException validationException => (
+                "Ошибка валидации",
+                validationException.Message,
+                StatusCodes.Status400BadRequest
             ),
             _ => (
                 "Внутренняя ошибка сервера", 
@@ -36,7 +37,21 @@ public class CustomExceptionHandler : IExceptionHandler
         };
 
         problemsDetails.Extensions.Add("traceId", httpContext.TraceIdentifier);
-        problemsDetails.Extensions.Add("errorMessage", exception.Message);
+
+        if (exception is ValidationException fvException)
+        {
+            var errors = fvException.Errors?
+                .Select(x => new {x.PropertyName, x.ErrorMessage}).ToList();
+
+            if (errors is not null && errors.Count > 0)
+            {
+                problemsDetails.Extensions.Add("validationException", errors);
+            }
+        } 
+        else
+        {
+            problemsDetails.Extensions.Add("errorMessage", exception.Message);
+        }
 
         await httpContext.Response.WriteAsJsonAsync(problemsDetails, token);
 
