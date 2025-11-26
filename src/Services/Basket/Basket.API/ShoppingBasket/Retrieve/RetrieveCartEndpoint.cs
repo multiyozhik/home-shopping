@@ -14,7 +14,8 @@ public class RetrieveCartEndpoint : ICarterModule
         .WithName("RetrieveCartEndpoint")
         .Produces<RetrieveCartResponse>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status404NotFound)
         .WithSummary("Получает корзину пользователя")
-        .WithDescription("Получает корзину по имени аккаунта, делающего заказ");
+        .WithDescription("Получает корзину по acccountName");
     }
 }

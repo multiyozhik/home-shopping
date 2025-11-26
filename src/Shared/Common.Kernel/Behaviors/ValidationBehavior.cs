@@ -1,9 +1,12 @@
+using Common.Kernel.CQRS.Queries;
+
 namespace Common.Kernel.Behaviors;
 
 /// <summary> Поведение для проверки валидности команд для CQRS </summary>
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : ICommand<TResponse>
+    where TRequest : IRequest<TResponse>
+
 {
     /// <summary> Обработчик запроса перед подачей дальше по pipeline обработчиков </summary>
     public async Task<TResponse> Handle(
