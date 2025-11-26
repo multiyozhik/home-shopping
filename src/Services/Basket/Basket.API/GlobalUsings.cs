@@ -9,3 +9,6 @@ global using Mapster;
 global using Common.Kernel.CQRS.Queries;
 global using Common.Kernel.Exceptions;
 global using FluentValidation;
+global using Basket.API.Exceptions;
+global using System.Text.Json;
+global using Microsoft.Extensions.Caching.Distributed;
