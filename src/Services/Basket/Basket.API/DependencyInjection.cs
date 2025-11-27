@@ -1,6 +1,3 @@
-using Common.Kernel.Behaviors;
-using Common.Kernel.Exceptions.Handler;
-
 namespace Basket.API;
 
 public static class DependencyInjection
@@ -33,7 +30,18 @@ public static class DependencyInjection
             options.Schema.For<ShoppingCart>().Identity(c => c.AccountName);
         }).UseLightweightSessions();
 
-        services.AddScoped<ICartRepository, CartRepository>();
+        var redisConnectionString = config.GetConnectionString("RedisConnection");
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString;
+            options.InstanceName = "Cart";
+        });
+
+        services.AddScoped<CartRepository>();
+        services.AddScoped<ICartRepository>(provider => 
+            new RedisCartCacheRepository(
+                cartRepository: provider.GetRequiredService<CartRepository>(), 
+                distributedCache: provider.GetRequiredService<IDistributedCache>()));
 
         return services;
     }

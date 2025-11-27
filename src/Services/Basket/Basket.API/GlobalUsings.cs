@@ -12,3 +12,5 @@ global using FluentValidation;
 global using Basket.API.Exceptions;
 global using System.Text.Json;
 global using Microsoft.Extensions.Caching.Distributed;
+global using Common.Kernel.Behaviors;
+global using Common.Kernel.Exceptions.Handler;
