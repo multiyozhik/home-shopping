@@ -37,11 +37,8 @@ public static class DependencyInjection
             options.InstanceName = "Cart";
         });
 
-        services.AddScoped<CartRepository>();
-        services.AddScoped<ICartRepository>(provider => 
-            new RedisCartCacheRepository(
-                cartRepository: provider.GetRequiredService<CartRepository>(), 
-                distributedCache: provider.GetRequiredService<IDistributedCache>()));
+        services.AddScoped<ICartRepository, CartRepository>();
+        services.Decorate<ICartRepository, RedisCartCacheRepository>();
 
         return services;
     }
