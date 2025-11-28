@@ -5,9 +5,9 @@ public class RemoveCartEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapDelete("/cart/{accountName}", async (string accountName, ISender sender) =>
+        app.MapDelete("/cart/{accountName}", async ([AsParameters] RemoveCartRequest request, ISender sender) =>
         {
-            var command = new RemoveCartCommand(accountName);
+            var command = new RemoveCartCommand(request.AccountName);
             var result = await sender.Send(command);
             var response = result.Adapt<RemoveCartResponse>();
             return Results.Ok(response);
