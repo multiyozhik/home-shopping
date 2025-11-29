@@ -1,3 +1,6 @@
+using System.Data;
+using MySqlConnector;
+
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -8,6 +11,9 @@ public static class DependencyInjection
     {
         services.AddGrpc();
         services.AddGrpcReflection();
+
+        var mySqlConnection = config.GetConnectionString("MySqlConnection");
+        services.AddScoped<IDbConnection>(_ => new MySqlConnection(mySqlConnection));
 
         var assembly = typeof(Program).Assembly;
         var licenseKey = config.GetSection("MediatR:LicenseKey").Value;
