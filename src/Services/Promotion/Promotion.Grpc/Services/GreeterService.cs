@@ -1,6 +1,3 @@
-using Grpc.Core;
-using Promotion.Grpc;
-
 namespace Promotion.Grpc.Services;
 
 public class GreeterService : Greeter.GreeterBase
@@ -15,12 +12,7 @@ public class GreeterService : Greeter.GreeterBase
     {
         return Task.FromResult(new HelloReply
         {
-            Message = "Hello " + request.Name
+            Message = "Hello " + request.Name + "!"
         });
-    }
-
-    public override Task<HelloReply> SayHello2(HelloRequest request, ServerCallContext context)
-    {
-        return base.SayHello2(request, context);
     }
 }
