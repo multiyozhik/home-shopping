@@ -1,6 +1,3 @@
-using System.Data;
-using MySqlConnector;
-
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -26,8 +23,12 @@ public static class DependencyInjection
         return services;
     }
 
-    public static WebApplication UseApiServices(this WebApplication app)
+    public static async Task<WebApplication> UseApiServices(this WebApplication app)
     {
+        using var scope = app.Services.CreateAsyncScope();
+        var connection = scope.ServiceProvider.GetRequiredService<IDbConnection>();
+        await DatabaseExtentions.SeedAsync(connection);
+
         app.MapGrpcReflectionService();
         app.MapGrpcService<GreeterService>();
         return app;
