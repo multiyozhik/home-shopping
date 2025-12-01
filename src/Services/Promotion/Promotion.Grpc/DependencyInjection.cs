@@ -30,7 +30,7 @@ public static class DependencyInjection
         await DatabaseExtentions.SeedAsync(connection);
 
         app.MapGrpcReflectionService();
-        app.MapGrpcService<GreeterService>();
+        app.MapGrpcService<PromoGrpcService>();
         return app;
     }
 }

@@ -5,9 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.71.0" />
@@ -15,5 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Common.Kernel\Common.Kernel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="Protos\promo.proto" GrpcServices="Server" />
   </ItemGroup>
 </Project>
