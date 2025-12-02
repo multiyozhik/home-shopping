@@ -20,6 +20,8 @@ public static class DependencyInjection
             config.RegisterServicesFromAssembly(assembly);
         });
 
+        services.AddScoped<IPromoRepository, PromoRepository>();
+
         return services;
     }
 

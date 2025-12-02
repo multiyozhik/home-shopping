@@ -1,4 +1,6 @@
 global using Grpc.Core;
+global using MediatR;
+global using Mapster;
 global using Dapper;
 global using System.Data;
 global using MySqlConnector;
@@ -8,3 +10,7 @@ global using Promotion.Grpc.Persistence.Data;
 global using Promotion.Grpc.Persistence.Extentions;
 global using Promotion.Grpc.Services;
 global using Promotion.Grpc.Protos;
+global using Promotion.Grpc.Persistence.Interfaces;
+global using Promotion.Grpc.Persistence.Repositories;
+global using Promotion.Grpc.UseCases.GetPromo;
+global using Common.Kernel.CQRS.Queries;
