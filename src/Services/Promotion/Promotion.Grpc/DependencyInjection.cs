@@ -7,7 +7,7 @@ public static class DependencyInjection
         IConfiguration config)
     {
         services.AddGrpc();
-        services.AddGrpcReflection();
+        services.AddGrpcReflection();        
 
         var mySqlConnection = config.GetConnectionString("MySqlConnection");
         services.AddScoped<IDbConnection>(_ => new MySqlConnection(mySqlConnection));

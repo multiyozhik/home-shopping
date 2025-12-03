@@ -10,4 +10,12 @@ public class PromoGrpcService (IMediator mediator) : PromoService.PromoServiceBa
         var query = new GetPromoByCatalogItemIdQuery(request.CatalogItemId);
         return await mediator.Send(query);
     }
+
+    /// <summary> Метод создает промоакцию по запросу и возвращает модель ответа </summary>
+    public override async Task<CreatePromoResponse> CreatePromo(
+        CreatePromoRequest request, ServerCallContext context)
+    {
+        var command = new CreatePromoCommand(request);
+        return await mediator.Send(command);
+    }
 }

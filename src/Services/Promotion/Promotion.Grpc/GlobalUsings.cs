@@ -14,3 +14,6 @@ global using Promotion.Grpc.Persistence.Interfaces;
 global using Promotion.Grpc.Persistence.Repositories;
 global using Promotion.Grpc.UseCases.GetPromo;
 global using Common.Kernel.CQRS.Queries;
+global using Common.Kernel.CQRS.Commands;
+global using Promotion.Grpc.UseCases.CreatePromo;
+global using System.Text.RegularExpressions;
