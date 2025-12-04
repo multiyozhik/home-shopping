@@ -34,4 +34,20 @@ public class PromoRepository(IDbConnection connection) : IPromoRepository
             insertPromo, promo);
         return insertedRowsNumber > 0;
     }
+
+    /// <inheritdoc/>
+    public async Task<bool> UpdateAsync(Promo? promo, CancellationToken token)
+    {
+        ArgumentNullException.ThrowIfNull(promo);
+        token.ThrowIfCancellationRequested();
+
+        const string updatePromo = """
+            UPDATE Promo SET 
+                Title = @Title,
+                Value = @Value
+            WHERE Id = @Id 
+        """;
+        var updatedRowsNumber = await connection.ExecuteAsync(updatePromo, promo);
+        return updatedRowsNumber > 0;        
+    }
 }

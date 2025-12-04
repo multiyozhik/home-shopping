@@ -8,4 +8,7 @@ public interface IPromoRepository
 
     /// <summary> Метод создания промоакции </summary>
     Task<bool> CreateAsync(Promo? promo, CancellationToken token);
+
+    /// <summary> Метод обновляет промоакцию </summary>
+    Task<bool> UpdateAsync(Promo? promo, CancellationToken token);
 }

@@ -6,7 +6,6 @@ public class GetPromoByCatalogItemIdHandler(IPromoRepository promoRepository)
     : IQueryHandler<GetPromoByCatalogItemIdQuery, PromoModel>
 {
     /// <summary> Метод получения промоакции по запросу по id элемента каталога </summary>
-    /// <exception cref="RpcException">Промоакция не найдена</exception>
     public async Task<PromoModel> Handle(GetPromoByCatalogItemIdQuery query, CancellationToken token)
     {
         var catalogItemId = query.CatalogItemId;

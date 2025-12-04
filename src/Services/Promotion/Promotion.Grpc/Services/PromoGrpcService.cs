@@ -18,4 +18,12 @@ public class PromoGrpcService (IMediator mediator) : PromoService.PromoServiceBa
         var command = new CreatePromoCommand(request);
         return await mediator.Send(command);
     }
+
+    /// <summary> Метод обновляет промоакцию по запросу и возвращает модель ответа </summary>
+    public override async Task<UpdatePromoResponse> UpdatePromo(
+        UpdatePromoRequest request, ServerCallContext context)
+    {
+        var command = new UpdatePromoCommand(request);
+        return await mediator.Send(command);
+    }
 }

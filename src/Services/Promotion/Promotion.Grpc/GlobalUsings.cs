@@ -17,3 +17,4 @@ global using Common.Kernel.CQRS.Queries;
 global using Common.Kernel.CQRS.Commands;
 global using Promotion.Grpc.UseCases.CreatePromo;
 global using System.Text.RegularExpressions;
+global using Promotion.Grpc.UseCases.UpdatePromo;
