@@ -12,13 +12,7 @@ public class CreatePromoCommandHandler(IPromoRepository promoRepository)
     {
         command.Validate();
 
-        var promo = new Promo
-        {
-            Id = Guid.NewGuid(),
-            CatalogItemId = command.Promo.CatalogItemId,
-            Title = command.Promo.Title,
-            Value = (decimal)command.Promo.Value
-        };
+        var promo = command.Promo.Adapt<Promo>();
 
         var success = await promoRepository.CreateAsync(promo, token);
         

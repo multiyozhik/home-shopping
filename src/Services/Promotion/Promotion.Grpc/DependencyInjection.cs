@@ -1,3 +1,5 @@
+using Promotion.Grpc.Configuration;
+
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -21,6 +23,8 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IPromoRepository, PromoRepository>();
+
+        MappingConfig.Configure();
 
         return services;
     }

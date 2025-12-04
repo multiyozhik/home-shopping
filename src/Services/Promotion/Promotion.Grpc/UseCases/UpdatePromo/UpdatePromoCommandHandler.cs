@@ -10,12 +10,7 @@ public class UpdatePromoCommandHandler(IPromoRepository promoRepository)
     {
         command.Validate();
 
-        var promo = new Promo
-        {
-            Id = Guid.Parse(command.Promo.Id),
-            Title = command.Promo.Title,
-            Value = (decimal)command.Promo.Value
-        };
+        var promo = command.Promo.Adapt<Promo>();
 
         var success = await promoRepository.UpdateAsync(promo, token);
 
