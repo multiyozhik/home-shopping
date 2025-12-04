@@ -50,4 +50,19 @@ public class PromoRepository(IDbConnection connection) : IPromoRepository
         var updatedRowsNumber = await connection.ExecuteAsync(updatePromo, promo);
         return updatedRowsNumber > 0;        
     }
+    /// <inheritdoc/>
+    public async Task<bool> DeleteByCatalogItemIdAsync(string? catalogItemId, CancellationToken token)
+    {
+        ArgumentNullException.ThrowIfNull(catalogItemId);
+        token.ThrowIfCancellationRequested();
+
+        const string deletePromo = """
+            DELETE FROM Promo
+                WHERE CatalogItemId = @CatalogItemId
+        """;
+
+        var deletedRowsNumber = await connection.ExecuteAsync(
+            deletePromo, new {CatalogItemId = catalogItemId});        
+        return deletedRowsNumber > 0;
+    }
 }

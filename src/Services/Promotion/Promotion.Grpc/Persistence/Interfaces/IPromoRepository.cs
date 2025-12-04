@@ -11,4 +11,7 @@ public interface IPromoRepository
 
     /// <summary> Метод обновляет промоакцию </summary>
     Task<bool> UpdateAsync(Promo? promo, CancellationToken token);
+
+    /// <summary> Метод удаляет промоакцию по id элемента каталога </summary>
+    Task<bool> DeleteByCatalogItemIdAsync(string? catalogItemId, CancellationToken token);
 }

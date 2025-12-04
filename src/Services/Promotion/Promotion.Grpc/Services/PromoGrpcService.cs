@@ -26,4 +26,12 @@ public class PromoGrpcService (IMediator mediator) : PromoService.PromoServiceBa
         var command = new UpdatePromoCommand(request);
         return await mediator.Send(command);
     }
+
+    /// <summary> Метод удаляет промоакцию и возвращает модель ответа </summary>
+    public override Task<DeletePromoResponse> DeletePromo(
+        DeletePromoRequest request, ServerCallContext context)
+    {
+        var command = new DeletePromoCommand(request.CatalogItemId);
+        return mediator.Send(command);
+    }
 }
