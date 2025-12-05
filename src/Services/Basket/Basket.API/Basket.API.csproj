@@ -6,13 +6,19 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Carter" Version="9.0.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.33.1" />
+    <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.71.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.32.0" PrivateAssets="All" />
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Marten" Version="8.3.1" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0" />
     <PackageReference Include="Scrutor" Version="7.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Common.Kernel\Common.Kernel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\Promotion\Promotion.Grpc\Protos\promo.proto" GrpcServices="Client" Link="Protos\promo.proto" />
   </ItemGroup>
 </Project>

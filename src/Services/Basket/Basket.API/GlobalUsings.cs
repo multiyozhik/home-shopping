@@ -14,3 +14,4 @@ global using System.Text.Json;
 global using Microsoft.Extensions.Caching.Distributed;
 global using Common.Kernel.Behaviors;
 global using Common.Kernel.Exceptions.Handler;
+global using Promotion.Grpc.Protos;

@@ -40,6 +40,12 @@ public static class DependencyInjection
         services.AddScoped<ICartRepository, CartRepository>();
         services.Decorate<ICartRepository, RedisCartCacheRepository>();
 
+        var promotionServiceUri = config.GetSection("GrpcServices:PromotionService").Value!;
+        services.AddGrpcClient<PromoService.PromoServiceClient>(options =>
+        {
+            options.Address = new Uri(promotionServiceUri);
+        });
+
         return services;
     }
 
