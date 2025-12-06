@@ -9,10 +9,13 @@ public class GetPromoByCatalogItemIdHandler(IPromoRepository promoRepository)
     public async Task<PromoModel> Handle(GetPromoByCatalogItemIdQuery query, CancellationToken token)
     {
         var catalogItemId = query.CatalogItemId;
-        var promo = await promoRepository.GetByCatalogItemIdAsync(catalogItemId, token) 
-            ?? throw new RpcException(new Status(
-                StatusCode.NotFound, $"Промоакций для {catalogItemId} не найдено"));
-
+        var promo = await promoRepository.GetByCatalogItemIdAsync(catalogItemId, token);
+        if (promo is null)
+            return new PromoModel
+            {
+                CatalogItemId = catalogItemId,
+                Value = 0
+            };
         return promo.Adapt<PromoModel>();
     }
 }
