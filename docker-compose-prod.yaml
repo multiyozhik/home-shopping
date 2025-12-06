@@ -1,4 +1,4 @@
-# docker compose -f docker-compose-prod.yaml up -d
+# docker compose -f docker-compose-prod.yaml up -d --build
 # docker compose -f docker-compose-prod.yaml down -v
 
 services:
@@ -69,6 +69,7 @@ services:
     depends_on:
     - basket_db
     - basket_redis
+    - promotion_api
     restart: unless-stopped
 
   promotion_db:
