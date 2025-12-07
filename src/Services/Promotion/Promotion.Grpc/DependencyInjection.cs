@@ -1,5 +1,3 @@
-using Promotion.Grpc.Configuration;
-
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -33,7 +31,9 @@ public static class DependencyInjection
     {
         using var scope = app.Services.CreateAsyncScope();
         var connection = scope.ServiceProvider.GetRequiredService<IDbConnection>();
-        await DatabaseExtentions.SeedAsync(connection);
+
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        await DatabaseExtentions.SeedAsync(connection, logger);
 
         app.MapGrpcReflectionService();
         app.MapGrpcService<PromoGrpcService>();
