@@ -4,3 +4,5 @@ global using Checkout.Domain.Orders;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using System.Reflection;
+global using Checkout.Domain.Enums;
+global using Checkout.Infrastructure.Data.Configurations;
