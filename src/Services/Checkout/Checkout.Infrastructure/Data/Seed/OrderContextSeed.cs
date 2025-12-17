@@ -1,7 +1,7 @@
 namespace Checkout.Infrastructure.Data.Seed;
 
 /// <summary> Класс для заполнения контекста заказов начальными данными </summary>
-public class OrderContextSeed
+public static class OrderContextSeed
 {
     public static async Task SeedAsync(OrderContext orderContext)
     {
