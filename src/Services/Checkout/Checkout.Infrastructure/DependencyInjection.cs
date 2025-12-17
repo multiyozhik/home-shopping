@@ -6,6 +6,8 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var pgConnectionString = configuration.GetConnectionString("PgConnection");
+        services.AddDbContext<OrderContext>(options => options.UseNpgsql(pgConnectionString));
         return services;
     }
 }
