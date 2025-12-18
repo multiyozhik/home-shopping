@@ -7,3 +7,6 @@ global using System.Reflection;
 global using Checkout.Domain.Enums;
 global using Checkout.Infrastructure.Data.Configurations;
 global using Checkout.Infrastructure.Data.Seed;
+global using System.Linq.Expressions;
+global using Checkout.Domain.Common;
+global using Checkout.Domain.Repositories;
