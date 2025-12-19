@@ -1,0 +1,43 @@
+namespace Checkout.Infrastructure.Repositories;
+
+/// <summary> Репозиторий заказов </summary>
+public class OrderRepository(OrderContext context) 
+    : BaseRepository<Order>(context), IOrderRepository
+{
+    /// <inheritdoc/>
+    public async Task<IEnumerable<Order>> GetOrdersByAccountName(string accountName)
+    {
+        return await dbContext.Set<Order>()
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .Where(o => o.AccountName == accountName)
+            .ToListAsync();
+    }
+
+    /// <inheritdoc/>
+    public override async Task<IReadOnlyList<Order>> GetAllAsync()
+    {
+        return await dbContext.Set<Order>()
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+    
+    /// <inheritdoc/>
+    public override async Task<Order?> GetByIdAsync(Guid id)
+    {
+        return await dbContext.Set<Order>()
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(o => o.Id == id);
+    }
+
+    /// <inheritdoc/>
+    public override async Task<IReadOnlyList<Order>> FindAsync(Expression<Func<Order, bool>> predicate)
+    {
+        return await dbContext.Set<Order>()
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .Where(predicate).ToListAsync();
+    }
+}

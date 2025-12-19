@@ -1,3 +1,5 @@
+using Checkout.Infrastructure.Repositories;
+
 namespace Checkout.Infrastructure;
 
 public static class DependencyInjection
@@ -8,6 +10,9 @@ public static class DependencyInjection
     {
         var pgConnectionString = configuration.GetConnectionString("PgConnection");
         services.AddDbContext<OrderContext>(options => options.UseNpgsql(pgConnectionString));
+
+        services.AddScoped<IOrderRepository, OrderRepository>();
+
         return services;
     }
 }

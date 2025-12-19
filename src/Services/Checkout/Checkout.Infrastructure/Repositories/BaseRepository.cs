@@ -1,9 +1,11 @@
 namespace Checkout.Infrastructure.Repositories;
 
 /// <summary> Абстрактный класс репозитория сущностей </summary>
-public abstract class BaseRepository<T>(DbContext dbContext): IRepository<T>
+public abstract class BaseRepository<T>(OrderContext context): IRepository<T>
     where T : class, IAggregateRoot
 {    
+    protected readonly OrderContext dbContext = context;
+    
     /// <inheritdoc/>
     public virtual async Task<IReadOnlyList<T>> GetAllAsync()
     {
