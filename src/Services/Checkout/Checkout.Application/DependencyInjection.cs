@@ -6,6 +6,12 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var assembly = Assembly.GetExecutingAssembly();
+        TypeAdapterConfig.GlobalSettings.Scan(assembly); 
+
+        services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+        services.AddScoped<IMapper, ServiceMapper>();
+
         return services;
     }
 }

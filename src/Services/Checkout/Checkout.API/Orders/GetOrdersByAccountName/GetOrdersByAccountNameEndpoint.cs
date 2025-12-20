@@ -5,7 +5,7 @@ public record GetOrdersByAccountNameRequest(string AccountName);
 
 
 /// <summary> response для endpoint заказов по AccountName </summary>
-public record GetOrdersByAccountNameResponse(IEnumerable<Order> Orders);
+public record GetOrdersByAccountNameResponse(IEnumerable<OrderDto> Orders);
 
 
 /// <summary> endpoint получения всех заказов по AccountName </summary>
