@@ -4,5 +4,5 @@ namespace Checkout.Domain.Repositories;
 public interface IOrderRepository : IRepository<Order>
 {
     /// <summary> Метод получения всех заказов по accountName </summary>
-    public Task<IEnumerable<Order>> GetOrdersByAccountName(string accountName);
+    public Task<IEnumerable<Order>> GetOrdersByAccountName(string accountName, CancellationToken token);
 }

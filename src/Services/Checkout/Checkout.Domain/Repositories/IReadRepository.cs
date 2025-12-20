@@ -4,11 +4,11 @@ namespace Checkout.Domain.Repositories;
 public interface IReadRepository<T> where T : IAggregateRoot
 {
     /// <summary> Метод получения списка всех сущностей </summary>
-    public Task<IReadOnlyList<T>> GetAllAsync();
+    public Task<IReadOnlyList<T>> GetAllAsync(CancellationToken token);
 
     /// <summary> Метод получения сущности по id </summary>
-    public Task<T?> GetByIdAsync(Guid id);
+    public Task<T?> GetByIdAsync(Guid id, CancellationToken token);
 
     /// <summary> Метод получения списка сущностей, удовлетворяющих предикату в виде дерева выражений </summary>
-    public Task<IReadOnlyList<T>> FindAsync(Expression<Func<T, bool>> predicate);
+    public Task<IReadOnlyList<T>> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken token);
 }

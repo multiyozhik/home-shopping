@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\Checkout.Domain\Checkout.Domain.csproj" />
     <ProjectReference Include="..\..\..\Shared\Common.Kernel\Common.Kernel.csproj" />

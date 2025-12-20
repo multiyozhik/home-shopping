@@ -5,7 +5,7 @@ public class OrderRepository(OrderContext context)
     : BaseRepository<Order>(context), IOrderRepository
 {
     /// <inheritdoc/>
-    public async Task<IEnumerable<Order>> GetOrdersByAccountName(string accountName)
+    public async Task<IEnumerable<Order>> GetOrdersByAccountName(string accountName, CancellationToken token)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)
@@ -15,7 +15,7 @@ public class OrderRepository(OrderContext context)
     }
 
     /// <inheritdoc/>
-    public override async Task<IReadOnlyList<Order>> GetAllAsync()
+    public override async Task<IReadOnlyList<Order>> GetAllAsync(CancellationToken token)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)
@@ -24,7 +24,7 @@ public class OrderRepository(OrderContext context)
     }
     
     /// <inheritdoc/>
-    public override async Task<Order?> GetByIdAsync(Guid id)
+    public override async Task<Order?> GetByIdAsync(Guid id, CancellationToken token)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)
@@ -33,7 +33,7 @@ public class OrderRepository(OrderContext context)
     }
 
     /// <inheritdoc/>
-    public override async Task<IReadOnlyList<Order>> FindAsync(Expression<Func<Order, bool>> predicate)
+    public override async Task<IReadOnlyList<Order>> FindAsync(Expression<Func<Order, bool>> predicate, CancellationToken token)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)

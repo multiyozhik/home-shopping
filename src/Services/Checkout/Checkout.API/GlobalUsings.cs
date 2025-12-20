@@ -6,3 +6,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
 global using Checkout.Infrastructure.Data.Extensions;
 global using Carter;
+global using Checkout.Application.Orders.Queries.GetOrdersByAccountName;
+global using Checkout.Domain.Orders;
+global using Mapster;
+global using MediatR;

@@ -11,7 +11,7 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        var assembly = Assembly.GetExecutingAssembly();
+        var assembly = typeof(GetOrdersByAccountNameQuery).Assembly;
         var licenseKey = configuration.GetSection("MediatR:LicenseKey").Value;
         services.AddMediatR(config =>
         {
@@ -30,8 +30,7 @@ public static class DependencyInjection
         app.UseSwaggerUI();
 
         await app.Services.MigrateAndSeedDatabaseAsync();
-        
-        app.MapGet("/", () => "Hello World!");
+    
         return app;
     }
 }
