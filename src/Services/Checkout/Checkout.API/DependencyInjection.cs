@@ -11,14 +11,6 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        var assembly = typeof(GetOrdersByAccountNameQuery).Assembly;
-        var licenseKey = configuration.GetSection("MediatR:LicenseKey").Value;
-        services.AddMediatR(config =>
-        {
-            config.LicenseKey = licenseKey;
-            config.RegisterServicesFromAssembly(assembly);
-        });
-
         return services;
     }
     

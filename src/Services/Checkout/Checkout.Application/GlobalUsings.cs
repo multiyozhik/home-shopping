@@ -9,3 +9,5 @@ global using Checkout.Domain.ValueObjects;
 global using Mapster;
 global using System.Reflection;
 global using MapsterMapper;
+global using FluentValidation;
+global using Common.Kernel.Behaviors;
