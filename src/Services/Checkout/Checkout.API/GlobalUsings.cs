@@ -9,3 +9,4 @@ global using Checkout.Application.Orders.Queries.GetOrdersByAccountName;
 global using Mapster;
 global using MediatR;
 global using Checkout.Application.Orders.Queries.GetOrdersByAccountName.DTOs;
+global using Common.Kernel.Exceptions.Handler;

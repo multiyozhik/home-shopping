@@ -6,6 +6,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddCarter();
 
         services.AddEndpointsApiExplorer();
@@ -16,6 +17,7 @@ public static class DependencyInjection
     
     public static async Task<WebApplication> UseApiServices(this WebApplication app)
     {
+        app.UseExceptionHandler(options => {});
         app.MapCarter();
 
         app.UseSwagger();
