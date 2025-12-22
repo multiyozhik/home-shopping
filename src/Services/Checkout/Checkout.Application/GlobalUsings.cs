@@ -11,3 +11,6 @@ global using System.Reflection;
 global using MapsterMapper;
 global using FluentValidation;
 global using Common.Kernel.Behaviors;
+global using Checkout.Application.Orders.Commands.CreateOrder.DTOs;
+global using Checkout.Domain.Enums;
+global using Common.Kernel.CQRS.Commands;
