@@ -10,3 +10,6 @@ global using Mapster;
 global using MediatR;
 global using Checkout.Application.Orders.Queries.GetOrdersByAccountName.DTOs;
 global using Common.Kernel.Exceptions.Handler;
+global using Checkout.Application.Orders.Commands.CreateOrder;
+global using Checkout.Application.Orders.Commands.CreateOrder.DTOs;
+global using Microsoft.AspNetCore.Mvc;
