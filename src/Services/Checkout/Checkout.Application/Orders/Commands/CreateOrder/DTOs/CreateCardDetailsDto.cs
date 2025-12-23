@@ -6,5 +6,9 @@ namespace Checkout.Application.Orders.Commands.CreateOrder.DTOs;
 /// <param name="OwnerLastName"> Фамилия владельца карты </param>
 /// <param name="OwnerFirstName"> Имя владельца карты </param>
 /// <param name="CvvCode"> CVV / CVC код </param>
-public record CreateCardDetailsDto(string CartNumber, string ExpirationDate, 
-    string OwnerLastName, string OwnerFirstName, string CvvCode);
+public record CreateCardDetailsDto(
+    string CartNumber, 
+    string ExpirationDate, 
+    string OwnerLastName, 
+    string OwnerFirstName, 
+    string CvvCode);
