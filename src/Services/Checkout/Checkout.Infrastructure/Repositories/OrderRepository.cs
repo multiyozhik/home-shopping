@@ -28,7 +28,6 @@ public class OrderRepository(OrderContext context)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)
-            .AsNoTracking()
             .FirstOrDefaultAsync(o => o.Id == id);
     }
 
@@ -37,7 +36,6 @@ public class OrderRepository(OrderContext context)
     {
         return await dbContext.Set<Order>()
             .Include(o => o.Items)
-            .AsNoTracking()
             .Where(predicate).ToListAsync();
     }
 }

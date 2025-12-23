@@ -13,3 +13,4 @@ global using Common.Kernel.Exceptions.Handler;
 global using Checkout.Application.Orders.Commands.CreateOrder;
 global using Checkout.Application.Orders.Commands.CreateOrder.DTOs;
 global using Microsoft.AspNetCore.Mvc;
+global using Checkout.Application.Orders.Commands.DeleteOrder;
