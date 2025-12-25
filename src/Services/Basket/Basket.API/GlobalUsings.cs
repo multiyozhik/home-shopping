@@ -15,3 +15,5 @@ global using Microsoft.Extensions.Caching.Distributed;
 global using Common.Kernel.Behaviors;
 global using Common.Kernel.Exceptions.Handler;
 global using Promotion.Grpc.Protos;
+global using Common.Messaging.Extensions;
+global using MapsterMapper;

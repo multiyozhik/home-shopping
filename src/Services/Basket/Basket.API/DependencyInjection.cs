@@ -46,6 +46,12 @@ public static class DependencyInjection
             options.Address = new Uri(promotionServiceUri);
         });
 
+        services.AddBroker(config, null);
+
+        TypeAdapterConfig.GlobalSettings.Scan(assembly); 
+        services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+        services.AddScoped<IMapper, ServiceMapper>();
+
         return services;
     }
 
