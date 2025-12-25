@@ -16,3 +16,4 @@ global using Checkout.Domain.Enums;
 global using Common.Kernel.CQRS.Commands;
 global using Common.Kernel.Exceptions;
 global using Checkout.Application.Orders.Commands.UpdateOrder.DTOs;
+global using Checkout.Application.Orders.Commands.ProcessOrderSubmission;

@@ -1,6 +1,6 @@
 namespace Checkout.Application.Mapping;
 
-/// <summary> Mapster конфигурация для маппинга UpdateOrderDto в Order при обновлении заказа </summary>
+/// <summary> Mapster конфигурация для маппинга при обновлении заказа </summary>
 public class UpdateOrderMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)

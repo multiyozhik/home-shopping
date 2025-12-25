@@ -1,5 +1,3 @@
-using Checkout.Infrastructure.Repositories;
-
 namespace Checkout.Infrastructure;
 
 public static class DependencyInjection
@@ -12,6 +10,8 @@ public static class DependencyInjection
         services.AddDbContext<OrderContext>(options => options.UseNpgsql(pgConnectionString));
 
         services.AddScoped<IOrderRepository, OrderRepository>();
+
+        services.AddBroker(configuration, Assembly.GetExecutingAssembly());
 
         return services;
     }

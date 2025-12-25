@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\Checkout.Application\Checkout.Application.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Common.Messaging\Common.Messaging.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
