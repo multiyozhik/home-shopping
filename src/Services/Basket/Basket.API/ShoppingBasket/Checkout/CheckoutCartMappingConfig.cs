@@ -12,11 +12,10 @@ public class CheckoutCartMappingConfig : IRegister
             .Map(dest => dest.Message, src => "Заказ сформирован и отправлен на обработку");
 
         config.NewConfig<CheckoutCartCommand, OrderSubmittedEvent>()
-            .Map(dest => dest.Items, src => new List<OrderItemEventDto>())
-            .Map(dest => dest.TotalPrice, src => default(decimal));
+            .Map(dest => dest.Items, src => new List<OrderItemEventDto>());
 
         config.NewConfig<ShoppingCartItem, OrderItemEventDto>()
-            .Map(dest => dest.CatalogItemName, src => "Unknown")
+            .Map(dest => dest.CatalogItemName, src => src.ItemTitle)
             .Map(dest => dest.Quantity, src => src.Quantity)
             .Map(dest => dest.UnitPrice, src => src.UnitPrice);        
     }

@@ -18,8 +18,8 @@ public class CheckoutCartCommandHandler(IPublishEndpoint publishEndpoint, ISende
             throw new NotFoundException(nameof(cart), accountName);  
 
         var orderEvent = command.Adapt<OrderSubmittedEvent>();        
-        orderEvent.AccountName = command.AccountName;
-        orderEvent.TotalPrice = cart.TotalPrice;
+        orderEvent.OrderId = Guid.NewGuid();
+        orderEvent.TotalPrice = cart.TotalPrice.ToString();
         orderEvent.Items = cart.Items.Select(i => i.Adapt<OrderItemEventDto>()).ToList();
 
         await publishEndpoint.Publish(orderEvent, token);

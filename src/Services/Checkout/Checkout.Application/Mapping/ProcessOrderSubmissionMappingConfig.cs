@@ -7,6 +7,7 @@ public class ProcessOrderSubmissionMappingConfig : IRegister
     {
         config.NewConfig<ProcessOrderSubmissionCommand, Order>()
             .Map(dest => dest.Id, src => src.OrderId)
+            .Map(dest => dest.TotalAmount, src => src.TotalPrice)
             .Map(dest => dest.CurrentCartDetails, src => (src.CardNumber != null)
                 ? new CartDetails(
                     src.CardNumber, 

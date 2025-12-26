@@ -3,10 +3,10 @@ namespace Common.Messaging.Events;
 /// <summary> Событие формирования заказа </summary>
 public class OrderSubmittedEvent : BaseIntegrationEvent
 {
-    // Информация о заказе
+    public Guid OrderId { get; set; }
     public string AccountName { get; set; } = default!;
     public List<OrderItemEventDto> Items { get; set; } = [];
-    public decimal TotalPrice { get; set; }
+    public string TotalPrice { get; set; } = default!;
     public string OrderStatus { get; set; } = default!;
 
     // Контактная информация

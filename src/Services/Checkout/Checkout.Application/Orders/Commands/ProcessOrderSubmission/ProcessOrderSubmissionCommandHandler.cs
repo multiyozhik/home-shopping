@@ -7,7 +7,7 @@ public record ProcessOrderSubmissionResult(Guid OrderId);
 public record ProcessOrderSubmissionCommand(
     Guid OrderId,
     List<OrderItemDto> Items, 
-    decimal TotalAmount,
+    decimal TotalPrice,
     string AccountName,
     string FirstName,
     string Lastname,
@@ -37,7 +37,7 @@ public class ProcessOrderSubmissionCommandHandler(IOrderRepository orderReposito
     {
         var orderId = command.OrderId;
         var order = await orderRepository.GetByIdAsync(orderId, token);
-        if (order is null)
+        if (order is not null)
             return new ProcessOrderSubmissionResult(orderId);
         var addingOrder = command.Adapt<Order>();
         await orderRepository.AddAsync(addingOrder, token);

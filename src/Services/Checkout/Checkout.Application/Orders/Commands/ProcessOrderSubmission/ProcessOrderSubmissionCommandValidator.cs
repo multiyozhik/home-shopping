@@ -13,7 +13,7 @@ public class ProcessOrderSubmissionCommandValidator
             .NotEmpty().WithMessage("CorrelationId обязательно должен быть указан")
             .Must(id => Guid.TryParse(id, out Guid _)).WithMessage("CorrelationId должен быть Guid");
 
-        RuleFor(x => x.TotalAmount)
+        RuleFor(x => x.TotalPrice)
             .NotNull().WithMessage("Стоимость заказа обязательно должна быть заполнена")
             .GreaterThan(0).WithMessage("Стоимость заказа должна быть больше 0");
 
