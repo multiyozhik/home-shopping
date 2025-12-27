@@ -21,7 +21,7 @@ public static class MassTransitConfigurationExtension
                 });
                 configigurator.UseMessageRetry(retry =>
                 {
-                    retry.Interval(5, TimeSpan.FromSeconds(5));
+                    retry.Interval(15, TimeSpan.FromSeconds(15));
                 });
                 configigurator.ConfigureEndpoints(context);
             });
