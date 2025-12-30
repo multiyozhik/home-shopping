@@ -5,3 +5,5 @@ global using Serilog.Context;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Serilog;
+global using System.Reflection;
+global using Serilog.Sinks.Elasticsearch;
