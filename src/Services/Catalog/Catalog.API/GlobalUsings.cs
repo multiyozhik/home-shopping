@@ -21,3 +21,6 @@ global using Mapster;
 global using Swashbuckle.AspNetCore.Annotations;
 global using Microsoft.OpenApi;
 global using Catalog.Domain.Specifications;
+global using Common.Logging.Extensions;
+global using Common.Logging.Middleware;
+global using Serilog;

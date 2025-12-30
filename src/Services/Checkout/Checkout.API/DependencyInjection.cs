@@ -12,11 +12,15 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        services.AddCommonLogging(configuration);
+
         return services;
     }
     
     public static async Task<WebApplication> UseApiServices(this WebApplication app)
     {
+        app.UseMiddleware<RequestLoggingMiddleware>();
+
         app.UseExceptionHandler(options => {});
         app.MapCarter();
 

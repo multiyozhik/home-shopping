@@ -52,6 +52,8 @@ public static class DependencyInjection
         services.AddSingleton(TypeAdapterConfig.GlobalSettings);
         services.AddScoped<IMapper, ServiceMapper>();
 
+        services.AddCommonLogging(config);
+
         return services;
     }
 
@@ -59,6 +61,8 @@ public static class DependencyInjection
         this WebApplication app
         )
     {
+        app.UseMiddleware<RequestLoggingMiddleware>();
+
         app.UseExceptionHandler(options => {});
         app.MapCarter();
 

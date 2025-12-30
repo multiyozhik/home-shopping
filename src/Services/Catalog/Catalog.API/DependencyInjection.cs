@@ -44,11 +44,14 @@ public static class DependencyInjection
             config.RegisterServicesFromAssembly(assembly);
         });
 
+        services.AddCommonLogging(configuration);
+
         return services;
     }
     
     public static WebApplication UseApiServices(this WebApplication app)
     {
+        app.UseMiddleware<RequestLoggingMiddleware>();
         app.MapControllers();
 
         app.UseSwagger();

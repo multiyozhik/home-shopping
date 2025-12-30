@@ -16,3 +16,6 @@ global using Microsoft.AspNetCore.Mvc;
 global using Checkout.Application.Orders.Commands.DeleteOrder;
 global using Checkout.Application.Orders.Commands.UpdateOrder;
 global using Checkout.Application.Orders.Commands.UpdateOrder.DTOs;
+global using Serilog;
+global using Common.Logging.Extensions;
+global using Common.Logging.Middleware;

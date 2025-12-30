@@ -26,8 +26,10 @@ public class RequestLoggingMiddleware(RequestDelegate _next, ILogger<RequestLogg
                 using (LogContext.PushProperty("ResponseTime", stopwatch.ElapsedMilliseconds))
                 using (LogContext.PushProperty("StatusCode", context.Response.StatusCode))
                 {
-                    logger.LogInformation("Запрос завершен за {ResponseTime}ms со статусом {StatusCode}",
-                    stopwatch.ElapsedMilliseconds, context.Response.StatusCode);
+                    logger.LogInformation(
+                        "Запрос завершен за {ResponseTime}ms со статусом {StatusCode}", 
+                        stopwatch.ElapsedMilliseconds, 
+                        context.Response.StatusCode);
                 }
             }
             catch (Exception ex)
@@ -37,8 +39,7 @@ public class RequestLoggingMiddleware(RequestDelegate _next, ILogger<RequestLogg
                 using (LogContext.PushProperty("ResponseTime", stopwatch.ElapsedMilliseconds))
                 using (LogContext.PushProperty("StatusCode", 500))
                 {
-                    logger.LogError(ex, "Ошибка при обработке запроса за {ResponseTime}ms",
-                    stopwatch.ElapsedMilliseconds);
+                    logger.LogError(ex, "Ошибка при обработке запроса за {ResponseTime}ms", stopwatch.ElapsedMilliseconds);
                     throw;
                 }
             }

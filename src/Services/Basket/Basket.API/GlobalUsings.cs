@@ -24,3 +24,6 @@ global using Common.Messaging.Events.DTOs;
 global using MassTransit;
 global using MassTransit.Testing;
 global using Microsoft.AspNetCore.Mvc;
+global using Serilog;
+global using Common.Logging.Extensions;
+global using Common.Logging.Middleware;
