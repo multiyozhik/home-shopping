@@ -20,3 +20,7 @@ global using System.Text.RegularExpressions;
 global using Promotion.Grpc.UseCases.UpdatePromo;
 global using Promotion.Grpc.Configuration;
 global using Promotion.Grpc.UseCases.DeletePromo;
+global using System.Diagnostics;
+global using Grpc.Core.Interceptors;
+global using Serilog.Context;
+global using Serilog;

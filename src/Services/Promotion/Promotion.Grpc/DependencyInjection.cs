@@ -1,3 +1,6 @@
+using Common.Logging.Extensions;
+using Promotion.Grpc.Interceptors;
+
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -6,7 +9,14 @@ public static class DependencyInjection
         this IServiceCollection services, 
         IConfiguration config)
     {
-        services.AddGrpc();
+        services.AddSingleton<RequestLoggingInterceptor>();
+        services.AddGrpc(options =>
+        {
+            options.Interceptors.Add<RequestLoggingInterceptor>();
+            options.EnableDetailedErrors = true;
+        });
+        services.AddCommonLogging(config);
+
         services.AddGrpcReflection();        
 
         var mySqlConnection = config.GetConnectionString("MySqlConnection");

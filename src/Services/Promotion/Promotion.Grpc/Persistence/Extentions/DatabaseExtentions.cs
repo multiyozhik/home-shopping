@@ -4,7 +4,7 @@ namespace Promotion.Grpc.Persistence.Extentions;
 public static class DatabaseExtentions
 {
     /// <summary> Метод заполнения БД исходными данными с несколькими попытками подключения </summary>
-    public static async Task SeedAsync(IDbConnection connection, ILogger logger, int maxRetries = 5)
+    public static async Task SeedAsync<T>(IDbConnection connection, ILogger<T> logger, int maxRetries = 5)
     {
         var delay = TimeSpan.FromSeconds(1);
 
