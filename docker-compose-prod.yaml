@@ -3,6 +3,8 @@
 
 services:
   catalog_db:
+    networks: 
+      - homeshopping-network
     container_name: catalog-db-prod
     image: postgres
     environment:
@@ -14,8 +16,15 @@ services:
     - "7411:5432"
     volumes:
     - postgres_catalog_prod:/var/lib/postgresql/
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p12345678"]
+      interval: 30s
+      timeout: 10s
+      retries: 25
 
   catalog_api:
+    networks: 
+      - homeshopping-network
     container_name: catalog-api
     build:
       context: .
@@ -35,6 +44,8 @@ services:
     restart: unless-stopped
 
   basket_db:
+    networks: 
+      - homeshopping-network
     container_name: basket-db-prod
     image: postgres
     environment:
@@ -48,6 +59,8 @@ services:
     - postgres_basket_prod:/var/lib/postgresql/
 
   basket_redis:
+    networks: 
+      - homeshopping-network
     container_name: basket-redis-prod
     image: redis
     command: redis-server --requirepass "12345678" --protected-mode no 
@@ -58,6 +71,8 @@ services:
     - redis_basket_prod:/data
 
   basket_api:
+    networks: 
+      - homeshopping-network
     container_name: basket-api
     build:
       context: .
@@ -82,6 +97,8 @@ services:
     restart: unless-stopped
 
   promotion_db:
+    networks: 
+      - homeshopping-network
     container_name: promotion-db-prod
     image: mysql:8.0
     environment:
@@ -99,6 +116,8 @@ services:
       retries: 25
 
   promotion_api:
+    networks: 
+      - homeshopping-network
     container_name: promotion-api
     build:
       context: .
@@ -119,6 +138,8 @@ services:
     restart: unless-stopped
 
   checkout_db:
+    networks: 
+      - homeshopping-network
     container_name: checkout-db-prod
     image: postgres
     environment:
@@ -137,6 +158,8 @@ services:
       retries: 30
 
   checkout_api:
+    networks: 
+      - homeshopping-network
     container_name: checkout-api
     build:
       context: .
@@ -158,6 +181,8 @@ services:
     restart: unless-stopped
 
   rabbit_mq:
+    networks: 
+      - homeshopping-network
     container_name: rabbit-mq-prod
     image: rabbitmq:3-management
     environment:
@@ -177,6 +202,8 @@ services:
       retries: 30
 
   elasticsearch:
+    networks: 
+      - homeshopping-network
     container_name: elasticsearch-prod
     image: elasticsearch:9.0.3
     environment:
@@ -208,6 +235,8 @@ services:
       retries: 5
 
   kibana:
+    networks: 
+      - homeshopping-network
     container_name: kibana-prod
     image: kibana:9.0.3
     environment:
@@ -223,6 +252,37 @@ services:
         condition: service_healthy
     restart: always
 
+  k6-catalog-load:
+    networks: 
+      - homeshopping-network
+    container_name: k6-catalog-load-prod
+    image: grafana/k6:latest
+    volumes:
+      - ./k6:/scripts
+    working_dir: /scripts
+    entrypoint: ["k6", "run", "catalog-api-load-test.js"]
+    environment:
+      - BASE_URL_CATALOG=http://catalog_api:8080
+    depends_on:
+      - catalog_api
+
+  k6-catalog-create:
+    networks: 
+      - homeshopping-network
+    container_name: k6-catalog-create-prod
+    image: grafana/k6:latest
+    volumes:
+      - ./k6:/scripts
+    working_dir: /scripts
+    entrypoint: ["k6", "run", "catalog-api-create-items-test.js"]
+    environment:
+      - BASE_URL_CATALOG=http://catalog_api:8080
+    depends_on:
+      catalog_api:
+        condition: service_started
+      elasticsearch:
+        condition: service_healthy
+
 volumes:
   postgres_catalog_prod:
   postgres_basket_prod:
@@ -231,3 +291,7 @@ volumes:
   postgres_checkout:
   rabbitmq_data:
   elasticsearch_data:
+
+networks:
+  homeshopping-network:
+    driver: bridge
