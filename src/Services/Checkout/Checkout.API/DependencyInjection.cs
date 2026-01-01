@@ -19,6 +19,7 @@ public static class DependencyInjection
     
     public static async Task<WebApplication> UseApiServices(this WebApplication app)
     {
+        app.UsePrometheusMetrics();
         app.UseMiddleware<RequestLoggingMiddleware>();
 
         app.UseExceptionHandler(options => {});

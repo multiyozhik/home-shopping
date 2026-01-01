@@ -1,6 +1,3 @@
-using Common.Logging.Extensions;
-using Promotion.Grpc.Interceptors;
-
 namespace Promotion.Grpc;
 
 public static class DependencyInjection
@@ -39,6 +36,8 @@ public static class DependencyInjection
 
     public static async Task<WebApplication> UseApiServices(this WebApplication app)
     {
+        app.UseMetricServer();
+
         using var scope = app.Services.CreateAsyncScope();
         var connection = scope.ServiceProvider.GetRequiredService<IDbConnection>();
 

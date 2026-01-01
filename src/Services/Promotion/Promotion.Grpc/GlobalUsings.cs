@@ -24,3 +24,6 @@ global using System.Diagnostics;
 global using Grpc.Core.Interceptors;
 global using Serilog.Context;
 global using Serilog;
+global using Common.Logging.Extensions;
+global using Prometheus;
+global using Promotion.Grpc.Interceptors;

@@ -27,3 +27,4 @@ global using Microsoft.AspNetCore.Mvc;
 global using Serilog;
 global using Common.Logging.Extensions;
 global using Common.Logging.Middleware;
+global using Common.Metrics.Extensions;

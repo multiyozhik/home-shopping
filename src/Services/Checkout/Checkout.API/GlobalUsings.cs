@@ -19,3 +19,4 @@ global using Checkout.Application.Orders.Commands.UpdateOrder.DTOs;
 global using Serilog;
 global using Common.Logging.Extensions;
 global using Common.Logging.Middleware;
+global using Common.Metrics.Extensions;

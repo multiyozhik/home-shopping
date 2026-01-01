@@ -3,6 +3,7 @@
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
     <ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Shared\Common.Logging\Common.Logging.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Common.Metrics\Common.Metrics.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />

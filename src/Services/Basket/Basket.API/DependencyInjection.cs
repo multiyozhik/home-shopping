@@ -61,6 +61,7 @@ public static class DependencyInjection
         this WebApplication app
         )
     {
+        app.UsePrometheusMetrics();
         app.UseMiddleware<RequestLoggingMiddleware>();
 
         app.UseExceptionHandler(options => {});
