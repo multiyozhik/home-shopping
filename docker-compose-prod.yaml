@@ -283,6 +283,27 @@ services:
       elasticsearch:
         condition: service_healthy
 
+  prometheus:
+    networks: 
+      - homeshopping-network
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+
+  grafana:
+    networks: 
+      - homeshopping-network
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lob/grafana
+
 volumes:
   postgres_catalog_prod:
   postgres_basket_prod:
@@ -291,6 +312,8 @@ volumes:
   postgres_checkout:
   rabbitmq_data:
   elasticsearch_data:
+  prometheus_data:
+  grafana_data:
 
 networks:
   homeshopping-network:
