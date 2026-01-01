@@ -304,6 +304,19 @@ services:
     volumes:
       - grafana_data:/var/lob/grafana
 
+  portainer:
+    networks: 
+      - homeshopping-network
+    container_name: portainer-prod
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
 volumes:
   postgres_catalog_prod:
   postgres_basket_prod:
@@ -314,6 +327,7 @@ volumes:
   elasticsearch_data:
   prometheus_data:
   grafana_data:
+  portainer_data:
 
 networks:
   homeshopping-network:
