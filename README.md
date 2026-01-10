@@ -62,3 +62,10 @@
 - `Checkout.Infrastructure` - реализует репозиторий заказов, работу с данными через EF Core (`OrderContext`, миграции), инициализацию данных (seed) для БД `PostgreSQL`, а также интеграцию с `RabbitMQ`/`MassTransit`, определен consumer для делегирования обработки события формирования заказа.
 - `Checkout.Domain` - содержит модели для заказов (`Order`, `OrderItem`, `Contact`, `Address`, `CardDetails`) и интерфейсы репозиториев.
 
+
+## Shared-библиотеки
+
+- `Common.Kernel` - базовые обобщенные интерфейсы CQRS и поведение валидации `ValidationBehavior` для проверки валидности команд, типовые обработки ошибок `CustomExceptionHandler` и исключения `NotFoundException`.
+- `Common.Messaging` - интеграция с брокером сообщений RabbitMQ через `MassTransit`, базовое событие и событие формирования заказа, модель для интеграционных событий (сообщений).
+- `Common.Logging`  - логирование `Serilog` с поддержкой `ElasticSearch`, файлов, консоли.
+- `Common.Metrics` - настройка метрик Prometheus для мониторинга HTTP-запросов.
